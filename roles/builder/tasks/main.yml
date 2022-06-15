@@ -12,4 +12,4 @@
       /var/repo:/git
     command: mvn -f /git/pom.xml clean package
     restart: yes
-    detach: yes
+    detach: no
