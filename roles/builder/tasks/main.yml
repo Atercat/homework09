@@ -2,14 +2,38 @@
 # tasks file for builder
 
 - name: Clone git repo
-  git: repo={{repo}} dest=/var/repo
+  git: repo={{ repo }} dest={{ repo_path }}
+
+- name: Ensure previously built artifact is absent
+  file: path={{ war_path }} state=absent
 
 - name: Start Maven container and build artifact
   docker_container:
     name: builder
     image: maven:3.6-alpine
     volumes:
-      /var/repo:/git
+      "{{ repo_path }}":/git
     command: mvn -f /git/pom.xml clean package
     restart: yes
     detach: no
+
+- name: Ensure newly built artifact is present
+  file: path={{ war_path }}
+
+- name: Copy Dockerfile to Build-node
+  copy: src=../Dockerfile dest={{ repo_path }}
+
+- name: Login to Dockerhub
+  docker_login:
+    username: "{{ docker_login }}"
+    password: "{{ docker_password }}"
+    email: "{{ docker_email }}"
+
+- name: Build production image and push it to Dockerhub
+  docker_image:
+    name: "{{ app_image }}"
+    path: "{{ repo_path }}"
+    build:
+      args:
+        artifact: "{{ war_path }}"
+    push: yes
