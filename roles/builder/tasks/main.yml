@@ -12,7 +12,7 @@
     name: builder
     image: maven:3.6-alpine
     volumes:
-      "{{ repo_path }}":/git
+      "{{ repo_path }}:/git"
     command: mvn -f /git/pom.xml clean package
     restart: yes
     detach: no
