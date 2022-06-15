@@ -1,0 +1,16 @@
+---
+- name: Build-server configuration
+  hosts: build
+  become: yes
+
+  roles:
+    - common
+    - builder
+
+- name: Run-server configuration
+  hosts: run
+  become: yes
+
+  roles:
+    - common
+    - runner
