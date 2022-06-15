@@ -3,3 +3,13 @@
 
 - name: Clone git repo
   git: repo={{repo}} dest=/var/repo
+
+- name: Start Maven container and build artifact
+  docker_container:
+    name: builder
+    image: maven:3.6-alpine
+    volumes:
+      /var/repo:/git
+    command: mvn -f /git/pom.xml clean package
+    restart: yes
+    detach: yes
