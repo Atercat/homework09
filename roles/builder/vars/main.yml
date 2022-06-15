@@ -1,2 +1,5 @@
 ---
 # vars file for builder
+
+vars:
+  repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git

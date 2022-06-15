@@ -1,2 +1,5 @@
 ---
 # tasks file for builder
+
+- name: Clone git repo
+  git: repo={{repo}} dest=/var/repo
