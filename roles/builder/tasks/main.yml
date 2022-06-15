@@ -32,8 +32,8 @@
   docker_image:
     name: "{{ app_image }}"
     source: build
-    path: "{{ repo_path }}"
     build:
+      path: "{{ repo_path }}"
       args:
         artifact: "{{ war_path }}"
     push: yes
