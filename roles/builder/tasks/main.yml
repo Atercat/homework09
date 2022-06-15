@@ -35,5 +35,5 @@
     build:
       path: "{{ repo_path }}"
       args:
-        artifact: "{{ war_path }}"
+        artifact: target/{{ app }}.war
     push: yes
