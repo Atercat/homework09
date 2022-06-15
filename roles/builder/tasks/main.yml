@@ -27,7 +27,6 @@
   docker_login:
     username: "{{ docker_login }}"
     password: "{{ docker_password }}"
-    email: "{{ docker_email }}"
 
 - name: Build production image and push it to Dockerhub
   docker_image:
