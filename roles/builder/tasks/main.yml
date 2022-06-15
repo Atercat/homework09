@@ -31,6 +31,7 @@
 - name: Build production image and push it to Dockerhub
   docker_image:
     name: "{{ app_image }}"
+    source: build
     path: "{{ repo_path }}"
     build:
       args:
