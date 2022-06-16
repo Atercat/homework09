@@ -27,7 +27,7 @@
   file: path={{ war_path }}
 
 - name: Copy Dockerfile to Build-node
-  copy: src=../Dockerfile dest={{ repo_path }}
+  copy: src=builder/files/Dockerfile dest={{ repo_path }}
 
 - name: Login to Dockerhub
   docker_login:
