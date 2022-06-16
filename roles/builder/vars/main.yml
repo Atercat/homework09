@@ -6,3 +6,4 @@ repo_path: /var/repo
 app: hello-1.0
 war_path: "{{ repo_path }}/target/{{ app }}.war"
 app_image: atercat/myboxfuse:tomcat
+file_to_change: src/main/webapp/index.jsp

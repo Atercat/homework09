@@ -4,6 +4,12 @@
 - name: Clone git repo
   git: repo={{ repo }} dest={{ repo_path }}
 
+- name: LineInFile example
+  lineinfile:
+    path: "{{ repo_path }}/{{ file_to_change }}"
+    search_string: "Congratulations!"
+    line: Built on {{ ansible_lsb.description }}
+
 - name: Ensure previously built artifact is absent
   file: path={{ war_path }} state=absent
 
