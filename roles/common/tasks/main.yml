@@ -1,11 +1,19 @@
 ---
 # tasks file for common
 
-- name: Ensure Docker is installed
-  apt: name={{item}} state=present update_cache=yes
+- name: Ensure Docker is installed on Debian
+  apt: name={{ item }} state=present update_cache=yes
   with_items:
     - docker.io
     - python3-docker
+  when: ansible_os_family == Debian
+
+- name: Ensure Docker is installed on RedHat
+  yum: name={{ item }} state=present update_cache=yes
+  with_items:
+    - docker
+    - python-docker-py
+  when: ansible_os_family == RedHat
 
 - name: Ensure Docker service is running
   service: name=docker state=started
