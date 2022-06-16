@@ -1,2 +1,9 @@
 ---
 # tasks file for runner
+
+- name: Run app container at production server
+  docker_container:
+    name: run
+    image: "{{ app_image }}"
+    ports: "8080:8080"
+    recreate: yes
