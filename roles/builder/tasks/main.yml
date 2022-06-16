@@ -34,11 +34,6 @@
     username: "{{ docker_login }}"
     password: "{{ docker_password }}"
 
-- name: Remove old image
-  docker_image:
-    name: "{{ app_image }}"
-    state: absent
-
 - name: Build production image and push it to Dockerhub
   docker_image:
     name: "{{ app_image }}"
@@ -48,3 +43,4 @@
       args:
         artifact: target/{{ app }}.war
     push: yes
+    notify: Remove image

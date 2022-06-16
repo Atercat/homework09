@@ -1,2 +1,7 @@
 ---
 # handlers file for builder
+
+- name: Remove image
+  docker_image:
+    name: "{{ app_image }}"
+    state: absent
