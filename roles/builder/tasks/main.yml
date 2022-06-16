@@ -43,4 +43,4 @@
       args:
         artifact: target/{{ app }}.war
     push: yes
-    notify: Remove image
+  notify: Remove image
