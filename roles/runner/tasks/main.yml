@@ -1,6 +1,11 @@
 ---
 # tasks file for runner
 
+- name: Remove old container
+  docker_container:
+    name: run
+    state: absent
+
 - name: Remove old image
   docker_image:
     name: "{{ app_image }}"
