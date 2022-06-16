@@ -1,16 +1,18 @@
 ---
 # tasks file for common
 
-- name: Ensure Docker is installed on Debian
+- name: Ensure Git and Docker are installed on Debian
   apt: name={{ item }} state=present update_cache=yes
   with_items:
+    - git
     - docker.io
     - python3-docker
   when: ansible_os_family == "Debian"
 
-- name: Ensure Docker is installed on RedHat
+- name: Ensure Git and Docker are installed on RedHat
   yum: name={{ item }} state=present update_cache=yes
   with_items:
+    - git
     - docker
     - python-docker-py
   when: ansible_os_family == "RedHat"
