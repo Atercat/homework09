@@ -2,7 +2,7 @@
 # tasks file for builder
 
 - name: Clone git repo
-  git: repo={{ repo }} dest={{ repo_path }}
+  git: repo={{ repo }} dest={{ repo_path }} force=yes
 
 - name: LineInFile example
   lineinfile:
