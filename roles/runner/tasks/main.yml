@@ -6,4 +6,5 @@
     name: run
     image: "{{ app_image }}"
     ports: "8080:8080"
+    pull: yes
     recreate: yes
