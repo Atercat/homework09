@@ -40,13 +40,13 @@
 - name: Restart Docker
   service: name=docker state=restarted
 
-- name: Login to Dockerhub
+- name: Login to Docker registry
   docker_login:
     registry: "{{ docker_registry }}"
     username: "{{ docker_login }}"
     password: "{{ docker_password }}"
 
-- name: Build production image and push it to Dockerhub
+- name: Build production image and push it to Docker registry
   docker_image:
     name: "{{ app_image }}"
     source: build

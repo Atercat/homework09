@@ -10,6 +10,23 @@
   docker_image:
     name: "{{ app_image }}"
     state: absent
+
+- name: Add insecure Docker repository
+  copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+        "insecure-registries": ["{{ docker_registry }}"]
+      }
+
+- name: Restart Docker
+  service: name=docker state=restarted
+
+- name: Login to Docker registry
+  docker_login:
+    registry: "{{ docker_registry }}"
+    username: "{{ docker_login }}"
+    password: "{{ docker_password }}"
     
 - name: Run app container at production server
   docker_container:
