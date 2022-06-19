@@ -8,7 +8,7 @@
   lineinfile:
     path: "{{ repo_path }}/{{ file_to_change }}"
     regexp: "<h1>(.*)</h1>"
-    line: "<h1>Built on {{ ansible_lsb.description }}</h1>"
+    line: "<h1>Built on {{ ansible_lsb.description }} with Jenkins</h1>"
 
 - name: Ensure previously built artifact is absent
   file: path={{ war_path }} state=absent
