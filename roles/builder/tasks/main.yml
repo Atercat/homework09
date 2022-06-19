@@ -32,7 +32,13 @@
 - name: Add insecure Docker repository
   copy:
     dest: /etc/docker/daemon.json
-    content: "{ \"insecure-registries\" : [\"{{ docker_registry }}\"] }"
+    content: |
+      {
+        "insecure-registries": ["{{ docker_registry }}"]
+      }
+
+- name: Restart Docker
+  service: name=docker state=restarted
 
 - name: Login to Dockerhub
   docker_login:
