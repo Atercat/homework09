@@ -1,4 +1,11 @@
 ---
+- name: Provision Build and Run nodes
+  hosts: localhost
+  tags: provision
+
+  roles:
+    - ec2
+
 - name: Build-server configuration
   hosts: build
   become: yes

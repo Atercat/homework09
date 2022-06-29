@@ -2,6 +2,8 @@
 - name: Provision an EC2 builder node
   amazon.aws.ec2_instance:
     name: Builder
+    state: started
+    wait: true
     key_name: devops
     instance_type: t3.micro
     security_group: SSHAccess
@@ -10,11 +12,17 @@
     image_id: ami-0440e5026412ff23f # Ubuntu22.04@eu-north-1
     tags:
       Environment: build
-  register: result
+  register: builder
+
+  - name: Add builder instance public IPs to build group
+     add_host: hostname={{ item.public_ip }} groups=build
+     loop: "{{ builder.instances }}"
 
 - name: Provision an EC2 runner node
   amazon.aws.ec2_instance:
     name: Runner
+    state: started
+    wait: true
     key_name: devops
     instance_type: t3.micro
     security_group: SSHAccess
@@ -23,4 +31,8 @@
     image_id: ami-0440e5026412ff23f # Ubuntu22.04@eu-north-1
     tags:
       Environment: run
-  register: result
+  register: runner
+
+  - name: Add runner instance public IPs to run group
+     add_host: hostname={{ item.public_ip }} groups=run
+     loop: "{{ runner.instances }}"
