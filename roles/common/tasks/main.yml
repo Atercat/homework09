@@ -12,7 +12,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Ensure Git and Docker are installed on RedHat
-  yum: name={{ item }} state=present update_cache=yes
+  yum:
     name:
       - git
       - docker
