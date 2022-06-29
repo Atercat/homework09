@@ -10,9 +10,6 @@
 
 - name: Build-server configuration
   hosts: build
-    vars:
-      ansible_ssh_private_key_file: ~/.ssh/ec2.pem
-  user: ubuntu
   become: yes
   tags: build
 
@@ -22,9 +19,6 @@
 
 - name: Run-server configuration
   hosts: run
-    vars:
-      ansible_ssh_private_key_file: ~/.ssh/ec2.pem
-  user: ubuntu
   become: yes
   tags: run
 
