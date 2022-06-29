@@ -14,8 +14,6 @@
       Environment: build
   register: builder
 
-- debug:
-    msg: "{{builder}}"
 - name: Add builder instance public IPs to build group
   add_host: hostname={{ item.public_ip_address }} groups=build
   loop: "{{ builder.instances }}"
