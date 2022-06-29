@@ -29,20 +29,11 @@
 - name: Copy Dockerfile to Build-node
   copy: src=builder/files/Dockerfile dest={{ repo_path }}
 
-- name: Add insecure Docker repository
-  copy:
-    dest: /etc/docker/daemon.json
-    content: |
-      {
-        "insecure-registries": ["{{ docker_registry }}"]
-      }
-
 - name: Restart Docker
   service: name=docker state=restarted
 
 - name: Login to Docker registry
   docker_login:
-    registry: "{{ docker_registry }}"
     username: "{{ docker_login }}"
     password: "{{ docker_password }}"
 
