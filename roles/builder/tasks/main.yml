@@ -29,9 +29,6 @@
 - name: Copy Dockerfile to Build-node
   copy: src=builder/files/Dockerfile dest={{ repo_path }}
 
-- name: Restart Docker
-  service: name=docker state=restarted
-
 - name: Login to Docker registry
   docker_login:
     username: "{{ docker_login }}"
