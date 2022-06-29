@@ -19,7 +19,7 @@
   loop: "{{ builder.instances }}"
 
 - name: Provision an EC2 runner node
-  amazon.aws.ec2_instance:
+  ec2_instance:
     name: Runner
     state: started
     wait: true
