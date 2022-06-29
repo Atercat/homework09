@@ -14,8 +14,10 @@
       Environment: build
   register: builder
 
+- debug:
+    msg: "{{builder}}"
 - name: Add builder instance public IPs to build group
-  add_host: hostname={{ item.public_ip }} groups=build
+  add_host: hostname={{ item.public_ip_address }} groups=build
   loop: "{{ builder.instances }}"
 
 - name: Provision an EC2 runner node
@@ -34,5 +36,5 @@
   register: runner
 
 - name: Add runner instance public IPs to run group
-  add_host: hostname={{ item.public_ip }} groups=run
+  add_host: hostname={{ item.public_ip_address }} groups=run
   loop: "{{ runner.instances }}"
