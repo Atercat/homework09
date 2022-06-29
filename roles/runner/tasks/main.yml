@@ -11,11 +11,6 @@
     name: "{{ app_image }}"
     state: absent
 
-- name: Login to Docker registry
-  docker_login:
-    username: "{{ docker_login }}"
-    password: "{{ docker_password }}"
-    
 - name: Run app container at production server
   docker_container:
     name: run
